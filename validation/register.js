@@ -36,12 +36,14 @@ module.exports = function validateRegisterInput(data) {
   if (
     !Validator.isStrongPassword(data.password, {
       minLength: 8,
+      minLowercase: 1,
+      minUppercase: 1,
       minNumbers: 1,
-      minSymbols: 1,
+      minSymbols: 0,
     })
   ) {
     errors.password =
-      "Password must be at least 8 characters and contain letters and numbers";
+      "Password must be at least 8 characters, 1 lower case letters, 1 upper case letter";
   }
 
   if (Validator.isEmpty(data.password2)) {
